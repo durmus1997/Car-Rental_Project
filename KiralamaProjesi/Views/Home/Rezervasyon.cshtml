@@ -1,0 +1,197 @@
+﻿@model KiralamaProjesi.ViewModels.RezervasyonViewModel
+@{
+    ViewData["Title"] = "Rezervasyon";
+}
+
+
+<div class="container">
+    <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+        <h1>Rezervasyon Bilgileri </h1>
+        <p class="lead">Rezervasyonunuzu tamamlamak için lütfen gerekli bütün bölümlerini doldurunuz </p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 order-md-2 mb-4">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted text-center">Kiralama Listeniz</span>
+            </h4>
+            <ul class="list-group mb-3">
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">Araba Modeli :</h6>
+                        <small class="text-muted">Bizi tercih ettiğiniz için teşekkür ederiz</small>
+                    </div>
+                    <span class="text-muted">@ViewBag.Araba.Ad</span>
+
+                </li>
+                
+
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>Toplam (TL)</span>
+                    <strong>@ViewBag.Araba.Fiyat TL</strong> <!-- Fiyat eklenecek -->
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-8 order-md-1">
+            <h4 class="mb-3">Kişisel Bilgileriniz</h4>
+            <form method="post" asp-controller="Home" asp-action="Rezervasyon" class="needs-validation" novalidate>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="firstName">Adınız</label>
+                        <input class="form-control" asp-for="Musteri.Ad" required>
+                        <div class="invalid-feedback">
+                            Lütfen geçerli bir isim giriniz!
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="lastName">Soyadınız</label>
+                        <input class="form-control" asp-for="Musteri.Soyad" required>
+                        <div class="invalid-feedback">
+                            Lütfen geçerli bir soyad giriniz!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="username">Telefon numaranız </label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">+</span>
+                        </div>
+                        <input class="form-control" asp-for="Musteri.Telefon" required>
+                        <div class="invalid-feedback" style="width: 100%;">
+                            Lütfen geçerli bir telefon numarası giriniz!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email">Email </label>
+                    <input type="email" class="form-control" asp-for="Musteri.Email" required>
+                    <div class="invalid-feedback">
+                        Lütfen geçerli bir e-mail giriniz!
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="address">Address</label>
+                    <input asp-for="Musteri.Adres" type="text" class="form-control" id="address" placeholder="1234 Alaca Sokak" required>
+                    <div class="invalid-feedback">
+                        Lütfen geçerli bir adres giriniz!
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-md-5 mb-3">
+                        <label for="country">Ülkeniz</label>
+                        <select asp-for="Musteri.Ulke" class="custom-select d-block w-100" id="country" required>
+                            <option value="">Seçim yapınız...</option>
+                            <option value="Azerbaycan">Azerbaycan</option>
+                            <option value="Bulgaristan">Bulgaristan</option>
+                            <option value="Türkiye">Türkiye</option>
+                        </select>
+
+                        <div class="invalid-feedback">
+                            Lütfen geçerli bir ülke seçiniz!
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="state">Şehriniz</label>
+                        <select asp-for="Musteri.Sehir" class="custom-select d-block w-100" id="state" required>
+                            <option value="">Seçim yapınız...</option>
+                            <option value="Adana">Adana</option>
+                            <option value="Ankara">Ankara</option>
+                            <option value="Bakü">Bakü</option>
+                            <option value="İstanbul">İstanbul</option>
+                            <option value="Sofya">Sofya</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Lütfen geçerli bir şehir seçiniz!
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="zip">Posta Kodu</label>
+                        <input asp-for="Musteri.PostaKodu" type="text" class="form-control" id="zip" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Lütfen geçerli bir Posta Kodu giriniz!
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="mb-4">
+
+                <h4 class="mb-3"> Ödeme Bilgileri</h4>
+
+                <div class="d-block my-3">
+                    <div class="custom-control custom-radio">
+                        <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+                        <label class="custom-control-label" for="credit">Kredi Kartı</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
+                        <label class="custom-control-label" for="debit"> Banka Kartı</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="cc-name">Kart üzerindeki isminiz</label>
+                        <input asp-for="Musteri.KrediAd" type="text" class="form-control" id="cc-name" placeholder="" required>
+                        <small class="text-muted">Full name as displayed on card</small>
+                        <div class="invalid-feedback">
+                            Lütfen geçerli bir isim giriniz!
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="cc-number">Kart numarınız</label>
+                        <input asp-for="Musteri.Kredino" type="text" class="form-control" id="cc-number" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Lütfen geçerli bir Kredi kartı numarası giriniz!
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label for="cc-expiration">CVV</label>
+                        <input asp-for="Musteri.Cvv" type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Lütfen geçerli bir CVV giriniz!
+                        </div>
+                    </div>
+
+                    <hr class="mb-4">
+                    <input type="hidden" asp-for="ArabaID" value="@ViewBag.Araba.Id" />
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Rezervasyonu Tamamla</button>
+
+                </div> <br><br><br>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+

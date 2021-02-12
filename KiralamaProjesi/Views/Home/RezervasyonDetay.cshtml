@@ -1,0 +1,166 @@
+﻿@model  KiralamaProjesi.ViewModels.RezervasyonDetayViewModel
+
+@{
+    ViewData["Title"] = "RezervasyonDetay";
+}
+
+<main>
+
+
+
+    <!--MDB Tables-->
+
+    <div class="container mt-5 mb-4">
+
+
+        <div class="card" style="margin-top:100px;">
+
+            <div class="card-body">
+
+                <!-- Grid row -->
+
+                <div class="row">
+
+                    <!-- Grid column -->
+
+                    <div class="col-md-12">
+
+                        <h2 class="pt-3 pb-4 text-center font-bold font-up deep-purple-text">Rezervasyon Bilgilerinizi Kontrol ediniz.</h2>
+
+                    </div>
+
+                    <!-- Grid column -->
+
+                </div>
+
+                <!-- Grid row -->
+                <!--Table-->
+
+                <table class="table table-striped">
+
+                    <!--Table head-->
+
+                    <thead>
+
+                        <tr>
+                            <th>Adınız Soyadınız :  @Model.Musteri.Ad @Model.Musteri.Soyad</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <!--Table head-->
+                    <!--Table body-->
+
+                    <tbody>
+
+                        <tr>
+
+                            <th scope="row">Telefon numaranız : @Model.Musteri.Telefon </th>
+
+
+
+                        </tr>
+
+                        <tr>
+
+                            <th scope="row">E-mail Adresi : @Model.Musteri.Email</th>
+
+                        </tr>
+
+                        <tr>
+
+                            <th scope="row">Adresiniz : @Model.Musteri.Adres</th>
+
+                        </tr>
+                        <tr>
+
+                            <th scope="row">Kredi Kartı bilginiz :  @Model.Musteri.Kredino</th>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div class="container mt-4">
+
+
+    <div class="card mb-4">
+
+        <div class="card-body">
+
+            <!-- Grid row -->
+
+            <div class="row">
+
+                <!-- Grid column -->
+
+                <div class="col-md-12">
+
+                    <h2 class="pt-3 pb-4 text-center font-bold font-up deep-purple-text">@Model.Musteri.Araba.Ad Kiralama Geçmişi</h2>
+
+                </div>
+
+                <!-- Grid column -->
+
+            </div>
+
+
+            <table class="table table-striped">
+
+                <!--Table head-->
+
+                <thead>
+
+                    <tr>
+
+                        <th>#</th>
+
+                        <th>Ad </th>
+
+                        <th>Soyad</th>
+
+                        <th>E-mail</th>
+                        <th>Telefon Numarası</th>
+
+                    </tr>
+
+                </thead>
+
+                <!--Table head-->
+                <!--Table body-->
+
+                <tbody>
+
+                    @foreach (var item in Model.GMusteriler)
+                    {
+                        <tr>
+
+                            <th scope="row">@(Model.GMusteriler.IndexOf(item) + 1)</th>
+
+                            <td>@item.Ad</td>
+
+                            <td>@item.Soyad</td>
+
+                            <td>@item.Email</td>
+                            <td>@item.Telefon</td>
+                        </tr>
+                    }
+
+
+                </tbody>
+
+                <!--Table body-->
+
+            </table>
+            <a asp-action="index" class="btn btn-primary float-right">Rezervasyonu Bitir</a>
+            <!--Table-->
+
+        </div>
+
+    </div>                   
+
+</div>

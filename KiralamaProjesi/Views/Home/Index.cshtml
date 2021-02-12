@@ -1,0 +1,47 @@
+﻿@model List<KiralamaProjesi.Models.Marka>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+
+
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">Bilgeç Araç Kiralama</h1>
+        <p class="lead text-muted">Ekonomik, lüks 7-9 koltuklu arabalar ve daha fazlası için fırsatları arayın ve karşılaştırın...</p> <br>
+        <p class="lead text-muted">
+            
+        </p>
+
+    </div>
+</section>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        @if (TempData["Message"] != null)
+        {
+            <div class="alert alert-success text-center">@TempData["Message"]</div>
+        }
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+                        <img class="card-img-top" src="~/lib/images/@item.Picture" alt="logo" height="380" width="400">
+                        <div class="card-body">
+                            <p class="card-text">@item.Description</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a asp-action="List" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Görüntüle</a>
+                                </div>
+                                <small class="text-muted">@item.Arabalar.Count Farklı Model Seçeneğiyle</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
